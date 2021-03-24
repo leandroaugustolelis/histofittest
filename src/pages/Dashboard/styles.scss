@@ -1,0 +1,32 @@
+.home-container {
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    font-weight: 600;
+    font-size: 18px;
+    color: #000;
+  }
+}
+
+.react-calendar-heatmap .color-scale-1 {
+  fill: #606060;
+}
+.react-calendar-heatmap .color-scale-2 {
+  fill: #404040;
+}
+.react-calendar-heatmap .color-scale-3 {
+  fill: #202020;
+}
+.react-calendar-heatmap .color-scale-4 {
+  fill: #000;
+}
+
+.home-photo {
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
