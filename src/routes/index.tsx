@@ -3,7 +3,9 @@ import { Switch } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import NavBarAuth from "../components/NavBarAuth";
 import { useAuth } from "../hooks/auth";
+import { ContributtionChart } from "../pages/ContributtionChart";
 import { Dashboard } from "../pages/Dashboard";
+import { ForgotPassword } from "../pages/ForgotPassword";
 import Products from "../pages/Products/Products";
 import Reports from "../pages/Products/Reports";
 import { Profile } from "../pages/Profile";
@@ -22,7 +24,14 @@ const Routes = () => {
         <Route path="/signup" exact component={SignUp} />
         <Route path="/signin" exact component={SignIn} />
         <Route path="/" exact component={Welcome} />
+        <Route
+          path="/contributtionchart"
+          component={ContributtionChart}
+          isPrivate
+        />
+
         <Route path="/profile" exact component={Profile} isPrivate />
+        <Route path="/forgot-password" exact component={ForgotPassword} />
         <Route path="/reports" component={Reports} />
         <Route path="/products" component={Products} />
         <Route path="/dashboard" component={Dashboard} isPrivate />

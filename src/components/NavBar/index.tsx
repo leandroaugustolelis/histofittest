@@ -15,7 +15,7 @@ const NavBar = () => {
       <IconContext.Provider value={{ color: "#fff" }}>
         <div className="navbar">
           <Link to="#" className="menu-bars">
-            <AiIcons.AiFillAppstore onMouseOver={showSidebar} />
+            <AiIcons.AiFillAppstore onClick={showSidebar} />
           </Link>
           <div>
             <NavLink to="/signin" className="navbar-login">

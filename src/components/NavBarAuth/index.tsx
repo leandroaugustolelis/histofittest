@@ -21,11 +21,11 @@ const NavBarAuth = () => {
       <IconContext.Provider value={{ color: "#fff" }}>
         <div className="navbar">
           <Link to="#" className="menu-bars">
-            <AiIcons.AiFillAppstore onMouseOver={showSidebar} />
+            <AiIcons.AiFillAppstore onClick={showSidebar} />
           </Link>
           <div>
             <NavLink to="/signin" className="navbar-login">
-              <FaUserCircle size={30} onMouseOver={showSidebarProfile} />
+              <FaUserCircle size={30} onClick={showSidebarProfile} />
             </NavLink>
 
             {/* <NavLink to="/signup" className="navbar-register"></NavLink> */}
@@ -70,12 +70,12 @@ const NavBarAuth = () => {
                       <span>{item.title}</span>
                     </Link>
                   </li>
-                  <div className="sidebar-logout" onClick={signOut}>
-                    <AiIcons.AiOutlinePoweroff /> Logout
-                  </div>
                 </>
               );
             })}
+            <div className="sidebar-logout" onClick={signOut}>
+              <AiIcons.AiOutlinePoweroff /> Logout
+            </div>
           </ul>
         </nav>
       </IconContext.Provider>

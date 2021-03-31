@@ -9,31 +9,29 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { ToastContainer, toast } from "react-toastify";
 
-import { api } from "../../services/api";
 import { useForm } from "react-hook-form";
-import { Link, useHistory } from "react-router-dom";
+import { api } from "../../services/api";
 
-const SignUp = () => {
-  const history = useHistory();
+const ForgotPassword = () => {
   const { register, handleSubmit } = useForm();
 
-  const handleSignUp = useCallback(async (data) => {
+  const handleForgotPassword = useCallback(async (data) => {
     try {
       const schema = Yup.object().shape({
-        name: Yup.string().required("Name required"),
         email: Yup.string()
           .required("Email required")
           .email("Please enter a valid E-mail"),
-        password: Yup.string().min(6, "Minimum 6 digits"),
       });
 
       await schema.validate(data, {
         abortEarly: false,
       });
 
-      await api.post("/users", data);
+      await api.post("/password/forgot", {
+        email: data.email,
+      });
 
-      toast.success("Register completed, please login", {
+      toast.success("Forgot Password email was sent, please check your email", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -42,10 +40,8 @@ const SignUp = () => {
         draggable: true,
         progress: undefined,
       });
-
-      history.push("/signin");
     } catch (err) {
-      toast.error("Email already exists, use another email", {
+      toast.error("Credential error! Try again", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -59,26 +55,11 @@ const SignUp = () => {
 
   return (
     <div className="main-container">
-      <span className="main-title">Welcome to Histofit</span>
+      <span className="main-title">Forgot Password</span>
 
-      <form className="main-form" onSubmit={handleSubmit(handleSignUp)}>
-        <input ref={register} name="name" type="text" placeholder="Full Name" />
+      <form className="main-form" onSubmit={handleSubmit(handleForgotPassword)}>
         <input ref={register} name="email" type="text" placeholder="Email" />
-        <input
-          ref={register}
-          name="password"
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="confirmPassword"
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <Button text="Register" />
-        <span>
-          Already registered? <Link to="/signin">Login</Link>
-        </span>
+        <Button text="Submit" />
         <ToastContainer
           position="top-right"
           autoClose={5000}
@@ -96,4 +77,4 @@ const SignUp = () => {
   );
 };
 
-export { SignUp };
+export { ForgotPassword };

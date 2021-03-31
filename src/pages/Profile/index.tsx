@@ -29,7 +29,7 @@ const Profile = () => {
     }
   }, [user]);
 
-  const handleSignUp = useCallback(async (data) => {
+  const handleChangeProfile = useCallback(async (data) => {
     try {
       const schema = Yup.object().shape({
         name: Yup.string().required("Name required"),
@@ -44,7 +44,27 @@ const Profile = () => {
       });
 
       await api.post("/users", data);
-    } catch (err) {}
+
+      toast.success("Profile updated", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (err) {
+      toast.error("Email already exists, choose another", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   }, []);
 
   const handleAvatarChange = useCallback(
@@ -57,9 +77,14 @@ const Profile = () => {
         api.patch("/users/avatar", data).then((response) => {
           updateUser(response.data);
 
-          addToast({
-            type: "success",
-            title: "Avatar updated!",
+          toast.success("Avatar updated", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
           });
         });
       }
@@ -82,7 +107,7 @@ const Profile = () => {
         </label>
       </div>
 
-      <form className="main-form" onSubmit={handleSubmit(handleSignUp)}>
+      <form className="main-form" onSubmit={handleSubmit(handleChangeProfile)}>
         <input ref={register} name="name" type="text" placeholder="Full Name" />
         <input ref={register} name="email" type="text" placeholder="Email" />
         <input
@@ -97,9 +122,6 @@ const Profile = () => {
           placeholder="Confirm Password"
         />
         <Button text="Update" />
-        <span>
-          Already registered? <Link to="/signin">Login</Link>
-        </span>
         <ToastContainer
           position="top-right"
           autoClose={5000}

@@ -70,6 +70,10 @@ const SignIn = () => {
         <span>
           Don’t have an account? <Link to="/signup">Sign up</Link>
         </span>
+
+        <Link className="forgot-password" to="/forgot-password">
+          Forgot Password
+        </Link>
         <ToastContainer
           position="top-right"
           autoClose={5000}
